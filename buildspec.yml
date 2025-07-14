@@ -2,23 +2,17 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: 3.8  # Optional: include if you need specific runtime
     commands:
-      - echo "Installing nginx..."
+      - echo Installing nginx...
       - sudo yum update -y
-      - sudo amazon-linux-extras enable nginx1 -y
-      - sudo yum clean metadata
       - sudo yum install nginx -y
   build:
     commands:
-      - echo "Build started on $(date)"
-      - sudo cp index.html /usr/share/nginx/html/
+      - echo Build started on date
+      - cp index.html /var/www/html/
   post_build:
     commands:
-      - echo "Configuring NGINX"
-      - sudo systemctl enable nginx
-      - sudo systemctl start nginx
+      - echo configuring NGINX
 artifacts:
   files:
-    - /usr/share/nginx/html/index.html
+    - /var/www/html/index.html
